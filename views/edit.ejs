@@ -1,0 +1,32 @@
+ <!DOCTYPE html>
+ <html lang="en" dir="ltr">
+   <head>
+     <meta charset="utf-8">
+    <title>todo</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+      .task{
+        width:30%;
+      }
+      @media screen and(max-width:768px)
+      {
+        .task{
+          width:100%;
+        }
+      }
+      </style>
+      </head>
+
+  <body>
+    <div class="container-md container-fluid m-auto">
+      <form class="text-center" action="/edit/<%=todos._id%>" method="post">
+        <div class="form-group w-100 text-center">
+          <label for="task">Update Task</label>
+          <input class="form-control task m-auto" type="text" name="task" value="<%= todos.task %>">
+          <button type="submit" name="button" class="mt-3 btn btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+   </body>
+ </html>

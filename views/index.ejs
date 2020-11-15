@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        #addtask{
+            width: 50%;
+            margin: auto;
+        }
+        @media screen and (max-width:768px)
+        {
+            #addtask{
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-md conatiner-fluid border border-primary" id="addtask">
+        <div class="w-100 text-center"><h2>Todo App</h2></div>
+        <form method="POST" action="/" class="m-4">
+            <div class="form-group">
+            <label for="task">Add Task</label>
+            <input class="form-control" type="text" name="task" placeholder="Add Task">
+            <button class="btn btn-success mt-3" type="submit">Add</button>
+        </form>
+        <div class="mt-4 w-100">
+            <ol class="list-group w-100">
+                <% todo.forEach(function(td){ %>
+                <li>
+                  <%= td.task %>
+                  <span class="float-right">
+                    <a class="btn" href='/edit/<%=td._id%>'><i class="fa fa-pencil"></i></a>
+                    <a class="btn" href="/delete/<%=td.id%>"><i class="fa fa-trash"></i></a>
+                  </span>
+                </li>
+                <% }) %>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>
