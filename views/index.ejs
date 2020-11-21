@@ -21,7 +21,36 @@
 </head>
 <body>
     <div class="container-md conatiner-fluid border border-primary" id="addtask">
+
         <div class="w-100 text-center"><h2>Todo App</h2></div>
+        <div class="">
+
+        <% if(messages.length) { %>
+
+          <% messages.forEach(function(msg){ %>
+
+           <%  if(msg.fail){ %>
+
+            <div class="alert alert-danger">
+
+              <%= msg.message %>
+
+            </div>
+
+            <% }else {  %>
+
+              <div class="alert alert-success">
+
+                <%= msg.message %>
+
+              </div>
+
+            <% } %>
+
+          <% }) %>
+
+        <% } %>
+      </div>
         <form method="POST" action="/" class="m-4">
             <div class="form-group">
             <label for="task">Add Task</label>
@@ -35,7 +64,7 @@
                   <%= td.task %>
                   <span class="float-right">
                     <a class="btn" href='/edit/<%=td._id%>'><i class="fa fa-pencil"></i></a>
-                    <a class="btn" href="/delete/<%=td.id%>"><i class="fa fa-trash"></i></a>
+                    <a class="btn text-danger" href="/delete/<%=td.id%>"><i class="fa fa-trash"></i></a>
                   </span>
                 </li>
                 <% }) %>
