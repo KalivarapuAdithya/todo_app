@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 
 const Todo = require('./models/todo');
 
-mongoose.connect('mongodb://localhost/todo',{useNewUrlParser: true ,useUnifiedTopology: true });
+mongoose.connect('mongodb+srv://yaduveera:968636992582@cluster0.tz6pn.mongodb.net/todo?retryWrites=true&w=majority',{useNewUrlParser: true ,useUnifiedTopology: true });
 
 let db = mongoose.connection;
 
