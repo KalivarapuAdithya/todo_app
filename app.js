@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 
 const Todo = require('./models/todo');
 
-mongoose.connect('mongodb://localhost/todo',{ useNewUrlParser:true ,useUnifiedTopology:true });
+mongoose.connect('mongodb://localhost/todo',{useNewUrlParser: true ,useUnifiedTopology: true });
 
 let db = mongoose.connection;
 
@@ -99,7 +99,7 @@ app.post('/edit/:id',(req,res)=>{
     messages.push({fail:1,message:'please fill a task'});
     console.log(messages.length);
     console.log(messages);
-    Todo.findById({_id:req.params.id},(err,todos)=>{
+    Todo.findById(query,(err,todos)=>{
       res.render('edit',{messages:messages,todo:todos});
   });
   }
