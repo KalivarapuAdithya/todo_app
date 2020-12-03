@@ -23,17 +23,15 @@ db.on('err',(err)=>{
 });
 
 app.get('/',(req,res)=>{
-  let messages = [];
     Todo.find({},(err,todos)=>{
         if(err)
         console.log(err);
         else
-        res.render('index',{messages:messages,todo:todos});
+        res.render('index',{todo:todos});
     })
 });
 
 app.post('/',(req,res)=>{
-    let messages = [];
     let a = req.body.task;
     if(a.length!=0)
     {
@@ -46,37 +44,25 @@ app.post('/',(req,res)=>{
           }
           else
           {
-            messages.push({fail:0,message:'task added'});
-            console.log(messages.length);
-            console.log(messages);
-            Todo.find({},(err,todos)=>{
-            res.render('index',{messages:messages,todo:todos});
-          });
+            res.redirect('/');
           }
       })
     }
     else{
-      messages.push({fail:1,message:'please fill a task'});
-      console.log(messages.length);
-      console.log(messages);
-      Todo.find({},(err,todos)=>{
-      res.render('index',{messages:messages,todo:todos});
-    });
+      res.redirect('/');
     }
 })
 
 app.get('/edit/:id',(req,res)=>{
-  let messages = [];
   Todo.findById({_id:req.params.id},(err,todos)=>{
       if(err)
       console.log(err);
       else
-      res.render('edit',{messages:messages,todo:todos});
+      res.render('edit',{todo:todos});
   })
 });
 
 app.post('/edit/:id',(req,res)=>{
-  let messages = [];
   let query={_id:req.params.id};
   let a = req.body.task;
   if(a.length!=0)
@@ -86,38 +72,22 @@ app.post('/edit/:id',(req,res)=>{
       if(err)
       console.log(err);
       else {
-        messages.push({fail:0,message:'task edited successfully'});
-        console.log(messages.length);
-        console.log(messages);
-        Todo.find({},(err,todos)=>{
-          res.render('index',{messages:messages,todo:todos});
-      });
+        res.redirect('/');
       }
     });
   }
   else{
-    messages.push({fail:1,message:'please fill a task'});
-    console.log(messages.length);
-    console.log(messages);
-    Todo.findById(query,(err,todos)=>{
-      res.render('edit',{messages:messages,todo:todos});
-  });
+    res.redirect(`/edit/${req.params.id}`);
   }
 });
 
 app.get('/delete/:id',(req,res)=>{
-  let messages = [];
   let query={_id:req.params.id};
   Todo.deleteOne(query,function(err){
     if(err)
     console.log(err);
     else {
-      messages.push({fail:0,message:'successfully deleted'});
-      console.log(messages.length);
-      console.log(messages);
-      Todo.find({},(err,todos)=>{
-        res.render('index',{messages:messages,todo:todos});
-    });
+      res.redirect('/');
     }
   });
 });

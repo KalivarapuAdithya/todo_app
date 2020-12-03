@@ -20,33 +20,6 @@
 
   <body>
     <div class="container-md container-fluid m-auto">
-      <div class="">
-
-      <% if(messages.length) { %>
-
-        <% messages.forEach(function(msg){ %>
-
-         <%  if(msg.fail){ %>
-
-          <div class="alert alert-danger text-center">
-
-            <%= msg.message %>
-
-          </div>
-
-          <% }else {  %>
-
-            <div class="alert alert-success text-center">
-
-              <%= msg.message %>
-
-            </div>
-
-          <% } %>
-
-        <% }) %>
-
-      <% } %>
       <form class="text-center" action="/edit/<%=todo._id%>" method="post">
         <div class="form-group w-100 text-center">
           <label for="task">Update Task</label>
